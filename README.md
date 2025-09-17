@@ -59,8 +59,9 @@ elmo-hikes/
 
 
 ## Contributors
+- **Kiet** - I like computers and coding but I don't know anything about Java.
 
-- Kiet Tran - I like computers and coding but I don't know anything about Java.
+- **Yusra** - BCIT CST Student, python enthusiast 
 
 ---
 
