@@ -59,12 +59,11 @@ elmo-hikes/
 
 
 ## Contributors
-- **Your Name** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
+- **Kiet** - I like computers and coding but I don't know anything about Java.
+
 - **Yusra** - BCIT CST Student, python enthusiast 
 
 - AngEng Nay - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
-- BBY 10 - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
-
 ---
 
 
