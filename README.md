@@ -63,7 +63,7 @@ elmo-hikes/
 
 - **Yusra** - BCIT CST Student, python enthusiast 
 
-- AngEng Nay - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
+- **AngEng Nay** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
 ---
 
 
