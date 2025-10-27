@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+    <!-- Link to styles of your own -->
+    <link href="styles/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-expanded="false"
+            >Dropdown</a
+          >
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">App Help</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Misc.</a></li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+
+    <main>
+      <div id="calendar"></div>
+      <div class="jumbotron">
+        <h1 class="display-4">Welcome to LifeSync</h1>
+        <p class="lead">This is a welcome card. Blah blah blah</p>
+        <hr class="my-4" />
+        <p>Click the button to get started</p>
+        <p class="lead">
+          <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a> -->
+          <button type="button" class="btn btn-primary">Get Started</button>
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Copyright &copy; 2025 BBY10 BCIT</p>
+    </footer>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <script type="module" src="./src/main.js"></script>
+    <script src="./src/calendar.js"></script>
+  </body>
+</html>
