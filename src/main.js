@@ -1,9 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
+// main.js
+// This file initializes the application and sets up auth state monitoring
 
-const loginButton = document.querySelector('.btn-primary');
-function sayHello() {
-    // alert('Hello!');
-    window.location.href='login.html'
-}
-loginButton.addEventListener('click', sayHello);
+import { checkAuthState } from './authentication.js';
+
+// Initialize authentication state monitoring
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Main.js loaded - Initializing auth state check');
+    checkAuthState();
+});
