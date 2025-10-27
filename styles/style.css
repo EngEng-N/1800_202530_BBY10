@@ -2,58 +2,8 @@
     margin-top: 25vh;
 }
 
-div .form-group {
-    display: grid;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2rem;
-    width: 35%;
-}
 
-label {
-font-size: 120%;
-justify-self: start;
-font-weight: 600;
-}
 
-.form-control {
-
-}
-
-form {
-margin-top:5vh;
-}
-
-.header {
-    text-align:center;
-    font-weight: 800;
-    color: royalblue;
-}
-
-.header-signup {
-    margin-top: 0;
-}
-
-input {
-}
-
-.signup .btn {
-    font-size: 120%;
-}
-
-button.btn-secondary, button.btn-outline-secondary {
-    font-weight: 500;
-    border-radius: 8px;
-    padding: 8px 20px;
-    transition: all 0.2s ease-in-out;
-}
-
-button.btn-secondary:hover,
-button.btn-outline-secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
 
 
 button[onclick="history.back()"] {
