@@ -37,11 +37,5 @@
     <script type="module" src="src/firebaseConfig.js"></script>
     <script type="module" src="src/authentication.js"></script>
     <script type="module" src="src/main.js"></script>
-
-    <script type="module">
-      import { logoutUser, checkAuthState } from "./src/authentication.js";
-      window.logoutUser = logoutUser;
-      checkAuthState(); // This will handle redirects and welcome message
-    </script>
   </body>
 </html>
