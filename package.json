@@ -1,0 +1,32 @@
+{
+  "name": "web_template_with_bootstrap",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.",
+  "homepage": "https://github.com/EngEng-N/1800_202530_BBY10#readme",
+  "bugs": {
+    "url": "https://github.com/EngEng-N/1800_202530_BBY10/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EngEng-N/1800_202530_BBY10.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "firebase": "^12.4.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.9"
+  }
+}
