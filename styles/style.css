@@ -1,35 +1,47 @@
+.jumbotron {
+    margin-top: 25vh;
+}
+
 div .form-group {
-  display: grid;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2rem;
-  width: 35%;
+    display: grid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    width: 35%;
 }
 
 label {
-  font-size: 120%;
-  justify-self: start;
-  font-weight: 600;
+font-size: 120%;
+justify-self: start;
+font-weight: 600;
+}
+
+.form-control {
+
 }
 
 form {
-  margin-top: 5vh;
+margin-top:5vh;
 }
 
 .header {
-  text-align: center;
-  font-weight: 800;
-  color: royalblue;
+    text-align:center;
+    font-weight: 800;
+    color: royalblue;
 }
 
 .header-signup {
-  margin-top: 0;
+    margin-top: 0;
+}
+
+input {
 }
 
 .signup .btn {
-  font-size: 120%;
+    font-size: 120%;
 }
+
 
 button[onclick="history.back()"] {
   background-color: #0d6efd;
