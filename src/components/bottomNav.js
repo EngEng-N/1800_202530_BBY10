@@ -15,7 +15,7 @@ export function createBottomNav() {
     bottom: "0",
     left: "0",
     width: "100%",
-    background: "#f8f9fa",
+    background: "#73af85",
     padding: "10px",
     display: "flex",
     justifyContent: "space-around",

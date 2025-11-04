@@ -1,3 +1,127 @@
+@font-face {
+    font-family: 'K2D Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Italic'), url('./fonts/K2D-Italic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Bold'), url('./fonts/K2D-Bold.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Bold Italic'), url('./fonts/K2D-BoldItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Thin';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Thin'), url('./fonts/K2D-Thin.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D ExtraLight';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D ExtraLight'), url('./fonts/K2D-ExtraLight.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Light'), url('./fonts/K2D-Light.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Medium'), url('./fonts/K2D-Medium.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D SemiBold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D SemiBold'), url('./fonts/K2D-SemiBold.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D ExtraBold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D ExtraBold Regular'), url('./fonts/K2D-ExtraBold.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Thin Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Thin Italic'), url('./fonts/K2D-ThinItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D ExtraLight Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D ExtraLight Italic'), url('./fonts/K2D-ExtraLightItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Light Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Light Italic'), url('./fonts/K2D-LightItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D Medium Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D Medium Italic'), url('./fonts/K2D-MediumItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D SemiBold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D SemiBold Italic'), url('./fonts/K2D-SemiBoldItalic.woff') format('woff');
+    }
+    
+
+    @font-face {
+    font-family: 'K2D ExtraBold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('K2D ExtraBold Italic'), url('./fonts/K2D-ExtraBoldItalic.woff') format('woff');
+    }
+
+body {
+    background-color: #CDFFDA;
+    font-family: K2D, Verdana;
+}
+
 .jumbotron {
     margin-top: 25vh;
 }
@@ -59,4 +183,18 @@ button[onclick="history.back()"]:hover {
   background-color: #0b5ed7;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.page-header {
+    font-family: "K2D ExtraBold", Verdana;
+    font-size: clamp(4vw, calc(7rem + 1%), 40vw);
+    
+}
+
+.bottom-nav-container {
+    background-color: #73af85;
+}
+
+.navbar-color {
+    background-color: #73af85;
 }
