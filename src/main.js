@@ -1,6 +1,8 @@
 // main.js
 // This file initializes the application and sets up auth state monitoring
 
+import "../styles/main.css";
+
 import { createBottomNav } from "./components/bottomNav.js";
 import { logoutUser, checkAuthState } from "./authentication.js";
 

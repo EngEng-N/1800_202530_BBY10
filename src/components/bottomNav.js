@@ -4,24 +4,25 @@ export function createBottomNav() {
 
   nav.innerHTML = `
     <div class="bottom-nav-container">
-      <button class="btn btn-primary">Home</button>
-      <button class="btn btn-secondary">Calendar</button>
-      <button class="btn btn-success">Profile</button>
+        <button class="add">+</button>
     </div>
   `;
 
-  Object.assign(nav.style, {
-    position: "sticky",
-    bottom: "0",
-    left: "0",
-    width: "100%",
-    background: "#f8f9fa",
-    padding: "10px",
-    display: "flex",
-    justifyContent: "space-around",
-    borderTop: "1px solid #ccc",
-    zIndex: "9999",
-  });
+  const addButton = nav.querySelector(".add");
+
+  function addClick() {
+    const taskList = document.querySelector(".task-list-container");
+    if (!taskList) return;
+
+    // toggle visibility
+    if (taskList.style.display === "none" || taskList.style.display === "") {
+      taskList.style.display = "block";
+    } else {
+      taskList.style.display = "none";
+    }
+  }
+
+  addButton.addEventListener("click", addClick);
 
   return nav;
 }
