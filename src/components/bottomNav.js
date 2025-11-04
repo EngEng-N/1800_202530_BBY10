@@ -4,9 +4,9 @@ export function createBottomNav() {
 
   nav.innerHTML = `
     <div class="bottom-nav-container">
-      <button class="btn btn-primary">Home</button>
-      <button class="btn btn-secondary">Calendar</button>
-      <button class="btn btn-success">Profile</button>
+      <a class="btn btn-primary" href="./main.html">Home</a>
+      <a class="btn btn-secondary" href="./calendar.html">Calendar</a>
+      <a class="btn btn-success" href="./profile.html">Profile</a>
     </div>
   `;
 

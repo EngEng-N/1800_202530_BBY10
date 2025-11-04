@@ -1,0 +1,38 @@
+.jumbotron {
+    text-align: center;
+    margin-top: 22vh;
+}
+
+.welcome-header {
+    font-size: 6rem;
+}
+
+.red-hard {
+    color: rgb(159, 45, 45);
+    font-size: 120%;
+
+}
+
+.spacer {
+
+        display: grid;
+    grid-template-rows: 20vw;
+
+}
+
+#Life {
+color: rgb(254, 105, 105);
+}
+
+#Sync {
+color: #73af85;
+}
+
+#register-button {
+width: 70%;
+height: 5rem;
+font-size: 220%;
+font-family: "K2D ExtraBold", Verdana;
+border-radius: 40px;
+}
+
