@@ -122,9 +122,6 @@ body {
     font-family: K2D, Verdana;
 }
 
-.jumbotron {
-    margin-top: 25vh;
-}
 
 div .form-group {
     display: grid;
@@ -141,9 +138,7 @@ justify-self: start;
 font-weight: 600;
 }
 
-.form-control {
 
-}
 
 form {
 margin-top:5vh;
@@ -152,14 +147,19 @@ margin-top:5vh;
 .header {
     text-align:center;
     font-weight: 800;
-    color: royalblue;
+    color: #35543e;
 }
 
 .header-signup {
     margin-top: 0;
 }
 
-input {
+#haveAccLogin {
+color: #184e58;
+}
+
+#dontHaveAccSignUp {
+color: #184e58;
 }
 
 .signup .btn {
@@ -168,7 +168,7 @@ input {
 
 
 button[onclick="history.back()"] {
-  background-color: #0d6efd;
+  background-color: #73af85;
   color: white;
   border: none;
   border-radius: 0.375rem;
@@ -180,7 +180,7 @@ button[onclick="history.back()"] {
 }
 
 button[onclick="history.back()"]:hover {
-  background-color: #0b5ed7;
+  background-color: #4d7d5b;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
@@ -197,4 +197,78 @@ button[onclick="history.back()"]:hover {
 
 .navbar-color {
     background-color: #73af85;
+}
+
+.nav {
+
+   background-color: #73af85; 
+
+}
+
+footer {
+    text-align: center;
+}
+
+.btn {
+background-color: #73af85;
+border: 0px;
+}
+
+.btn:hover {
+background-color:#4d7d5b;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+background-color: #73af85;
+border-radius: 0;
+border: 0px;
+color: white;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active:hover {
+background-color: #4d7d5b;
+border-radius: 12px;
+border: 0px;
+color: white;
+}
+
+.nav-tabs .nav-link {
+color: white;
+}
+
+
+.nav-tabs .nav-link:hover {
+border: 0px;
+isolation: none;
+background-color: #4d7d5b;
+border-radius: 12px;
+border: 0px;
+color: white;
+}
+
+
+
+.dropdown-menu:hover {
+background-color: #4d7d5b;
+border: 0px;
+color: white;
+}
+
+.dropdown-menu {
+background-color: #4d7d5b;
+border-radius: 12px;
+border: 0px;
+color: white;
+}
+
+
+.dropdown-item {
+color: white;
+}
+.dropdown-item:hover {
+background-color: #4d7d5b;
+}
+
+.nav-tabs .nav-link:focus {
+border: 0px;
 }
