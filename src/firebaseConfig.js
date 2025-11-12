@@ -10,7 +10,11 @@
 
 // Import Firebase SDK modules (using Firebase v9 modular syntax)
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  browserLocalPersistence
+} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // ---------------------------------------------------------
@@ -43,4 +47,13 @@ const app = initializeApp(firebaseConfig);
 // or signout operations (that's why we export it).
 // ---------------------------------------------------------
 export const auth = getAuth(app);
+
+setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    console.log("Auth persistence set to LOCAL — users stay logged in until logout.");
+  })
+  .catch((error) => {
+    console.error("Error setting auth persistence:", error);
+  });
+
 export const db = getFirestore(app);

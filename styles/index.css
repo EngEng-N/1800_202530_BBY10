@@ -36,3 +36,42 @@ font-family: "K2D ExtraBold", Verdana;
 border-radius: 40px;
 }
 
+.nav-tabs {
+  display: flex;
+  align-items: center;      
+  background-color: #79a687;
+  border-bottom: none;
+  padding: 0 10px;
+  height: 60px;             
+}
+
+.nav-item,
+.home-color {
+  display: flex;
+  align-items: center;      
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;      
+  padding: 0 10px;
+  line-height: 1;           
+  color: white;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+  display: block;
+}
+
+.dropdown-toggle::after {
+  vertical-align: middle;   
+}
+
+
+
+
