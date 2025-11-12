@@ -16,11 +16,13 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
+
 // Step 2
 // Create constants for the DOM elements
 const ListName = document.getElementById("list-name");
 const TaskNameInput = document.getElementById("task-name");
 const TaskDescInput = document.getElementById("task-desc");
+const TaskDueInput = document.getElementById("task-due");
 const AddTaskBtn = document.getElementById("add-task-btn");
 const TaskList = document.getElementById("task-list");
 
@@ -80,8 +82,10 @@ async function getActiveList() {
 // User can add more tasks later
 async function setTask() {
   // Each task / document will have a name and description
+  // [value] takes whatever was entered
   const taskName = TaskNameInput.value.trim();
   const taskDesc = TaskDescInput.value.trim();
+  const taskDue = TaskDueInput.value;
   const name = ListName.textContent.trim();
   const taskListRef = doc(db, name, taskName);
 
@@ -89,16 +93,19 @@ async function setTask() {
     alert("Task name is required!");
     return;
   }
+  console.log("Due Date: " + taskDue);
 
   await setDoc(taskListRef, {
     createdAt: serverTimestamp(),
     name: taskName,
     description: taskDesc,
+    dueDate: taskDue,
   });
 
   // Clear input fields
   TaskNameInput.value = "";
   TaskDescInput.value = "";
+  TaskDueInput.value = "";
 
   // Save as active task
   await setDoc(doc(db, "settings", "activeTask"), { name: taskName });
@@ -138,6 +145,22 @@ async function getTasks() {
     const taskDesc = document.createElement("p");
     taskDesc.innerHTML = `Description:<br>${data.description}`;
 
+    const taskDue = document.createElement("p");
+    taskDue.classList.add("taskDue");
+
+    let simpleDate = "none";
+
+    if (data.dueDate) {
+    const dateObject = new Date(data.dueDate);
+    simpleDate = {
+    month: "short",
+    day: "numeric",
+    };
+
+    taskDue.innerHTML = dateObject.toLocaleDateString("en-US", simpleDate).replace(" ", "<br>");
+    }
+
+    taskContent.appendChild(taskDue);
     // Appending elements to the DOM
     taskHead.appendChild(taskCheckbox);
     taskHead.appendChild(taskTitle);
