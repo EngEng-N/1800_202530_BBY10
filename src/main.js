@@ -15,21 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
   body.appendChild(bottomNav);
 });
 
+
 if (window.location.pathname.endsWith("main.html")) {
   history.pushState(null, "", window.location.href);
-  window.addEventListener("popstate", function (event) {
-    const confirmLeave = confirm("Are you sure you want to leave this page?");
-    if (confirmLeave) {
-      window.removeEventListener("popstate", arguments.callee);
-     
-      history.back();
-    } else {
-      
-      history.pushState(null, "", window.location.href);
-    }
+
+  window.addEventListener("popstate", function () {
+    window.location.href = "main.html";
   });
 }
 
+if (window.location.pathname.endsWith("main.html")) {
+  history.pushState(null, "", window.location.href);
+
+  window.addEventListener("popstate", function () {
+    window.location.href = "main.html";
+  });
+}
 
 
 
