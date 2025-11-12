@@ -5,6 +5,8 @@ import "../styles/main.css";
 
 import { createBottomNav } from "./components/bottomNav.js";
 
+
+
 // Initialize authentication state monitoring
 document.addEventListener("DOMContentLoaded", () => {
   const bottomNav = createBottomNav();
@@ -12,3 +14,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.querySelector("body");
   body.appendChild(bottomNav);
 });
+
+if (window.location.pathname.endsWith("main.html")) {
+  history.pushState(null, "", window.location.href);
+  window.addEventListener("popstate", function (event) {
+    const confirmLeave = confirm("Are you sure you want to leave this page?");
+    if (confirmLeave) {
+      window.removeEventListener("popstate", arguments.callee);
+     
+      history.back();
+    } else {
+      
+      history.pushState(null, "", window.location.href);
+    }
+  });
+}
+
+
+
+
