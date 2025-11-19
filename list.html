@@ -12,23 +12,9 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">LifeSync</a>
-          <div class="d-flex align-items-center">
-            <span id="welcomeMessage" class="me-3"></span>
-            <button onclick="logoutUser()" class="btn btn-outline-primary">
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
-    </header>
-
     <main>
       <section class="list-section">
-        <h3 id="list-name" contenteditable="true">My List</h3>
+        <h2 id="list-name" contenteditable="true"></h2>
 
         <div class="task-inputs">
           <input type="text" id="task-name" placeholder="Task name" />
@@ -38,6 +24,12 @@
 
         <div id="task-list"></div>
       </section>
+      <div class="btn-container">
+        <button class="back-button" onclick="history.back()">Back</button>
+        <div class="edit-save">
+          <button class="save-button">Save</button>
+        </div>
+      </div>
     </main>
 
     <footer>

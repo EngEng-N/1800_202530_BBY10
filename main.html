@@ -13,6 +13,7 @@
       href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="styles/main.css" />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script
       src="https://kit.fontawesome.com/ddab3a7b39.js"
@@ -20,21 +21,7 @@
     ></script>
   </head>
   <body>
-    <header>
-      <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">LifeSync</a>
-          <div class="d-flex align-items-center">
-            <span id="welcomeMessage" class="me-3"></span>
-            <button onclick="logoutUser()" class="btn btn-outline-primary">
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav> -->
-    </header>
-    <button class="back-button" onclick="history.back()">Back</button>
-
+    <header></header>
     <main>
       <div id="calendar"></div>
       <div class="container mt-5">
@@ -91,11 +78,5 @@
     <script type="module" src="/src/logOut.js"></script>
     <script type="module" src="/src/main.js"></script>
     <script src="/src/calendar.js"></script>
-
-    <!-- <script type="module">
-      import { logoutUser, checkAuthState } from "./src/authentication.js";
-      window.logoutUser = logoutUser;
-      checkAuthState(); // This will handle redirects and welcome message
-    </script> -->
   </body>
 </html>
