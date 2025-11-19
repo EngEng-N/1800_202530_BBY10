@@ -164,6 +164,20 @@ async function loadActiveListAndTasks() {
       return;
     }
 
+    // Check if the list in the collection exists
+    const testRef = collection(db, firebaseActiveListName);
+    const testSnap = await getDocs(testRef);
+
+    // If the collection is empty AND has no metadata doc = it does not exist
+    if (testSnap.empty) {
+      await setDoc(doc(db, "settings", "activeList"), { name: null });
+
+      firebaseActiveListName = null;
+      localList = { name: "", tasks: [] };
+      renderUI();
+      return;
+    }
+
     // Update localList.name to match the Firebase list name
     // Clear any previous tasks
     localList.name = firebaseActiveListName;
