@@ -3,8 +3,16 @@
     margin-top: 22vh;
 }
 
+
+
 .welcome-header {
     font-size: 6rem;
+    
+}
+
+body {
+  background-color: #edeef2;
+
 }
 
 .red-hard {
@@ -17,6 +25,7 @@
 
         display: grid;
     grid-template-rows: 20vw;
+    
 
 }
 
@@ -35,6 +44,8 @@ font-size: 220%;
 font-family: "K2D ExtraBold", Verdana;
 border-radius: 40px;
 }
+
+
 
 .nav-tabs {
   display: flex;
@@ -71,6 +82,73 @@ border-radius: 40px;
 .dropdown-toggle::after {
   vertical-align: middle;   
 }
+
+.tracking-in-contract {
+	-webkit-animation: tracking-in-contract 1.5s linear both;
+	        animation: tracking-in-contract 1.5s linear both;
+}
+
+@-webkit-keyframes tracking-in-contract {
+  0% {
+    letter-spacing: 1em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-contract {
+  0% {
+    letter-spacing: 1em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    letter-spacing: normal;
+    opacity: 1;
+  }
+}
+
+
+.scale-in-ver-center {
+	-webkit-animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-in-ver-center {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-ver-center {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+
+
+
 
 
 

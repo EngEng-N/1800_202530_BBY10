@@ -1,6 +1,6 @@
 .reminder-main {
     display: grid;
-    grid-template-columns: 1.2fr 0.6fr; 
+    grid-template-columns: 1.2fr 0.6fr;
     grid-auto-rows: 6rem;
     row-gap: 1rem;
     column-gap: 0.25rem; 
@@ -8,15 +8,10 @@
     margin-bottom: 8rem;
 }
 .reminder-deadline {
-    transform: translateX(-300px); 
-}
-
-
-.reminder-deadline {
     font-family: "K2D ExtraBold";
     grid-column: 2/3;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 90%;
     align-content: center;
     border: 4px solid black;
@@ -39,7 +34,7 @@
     padding: 1rem 2rem;
     font-family: "K2D", sans-serif;
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: 2rem;
     color: #333;
     text-align: left;
 }
@@ -108,3 +103,121 @@
   background-color: #7b6f50;
   transform: scale(1.05);
 }
+
+.reminder-wrapper {
+  display: contents;
+}
+
+
+.date-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.left-container {
+  grid-column: 1/2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.delete-reminder-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: none;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-reminder-btn:hover {
+  background: #c0392b;
+}
+
+body {
+    opacity: 0;
+    animation: fadeInPage 0.4s ease-out forwards;
+}
+
+@keyframes fadeInPage {
+    to {
+        opacity: 1;
+    }
+}
+
+
+.page-header {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: headerSlideIn 0.5s ease-out 0.1s forwards;
+}
+
+@keyframes headerSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reminder-example,
+.reminder-deadline {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: reminderItemIn 0.5s ease-out forwards;
+}
+
+@keyframes reminderItemIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Small stagger effect so they don't all pop in at once */
+.reminder-example:nth-child(1),
+.reminder-deadline:nth-child(1) { animation-delay: 0.2s; }
+
+.reminder-example:nth-child(2),
+.reminder-deadline:nth-child(2) { animation-delay: 0.3s; }
+
+.reminder-example:nth-child(3),
+.reminder-deadline:nth-child(3) { animation-delay: 0.4s; }
+
+
+.reminder-example {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reminder-example:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.reminder-deadline {
+    transition: transform 0.2s ease;
+}
+
+.reminder-deadline:hover {
+    transform: scale(1.03);
+}
+
+.back-button {
+    opacity: 0;
+    animation: fadeInBackButton 0.4s ease-out 0.15s forwards;
+}
+
+@keyframes fadeInBackButton {
+    to {
+        opacity: 1;
+    }
+}
+
+

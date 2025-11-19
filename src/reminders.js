@@ -1,6 +1,7 @@
 
 import { collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "./firebaseConfig.js";
+import { deleteDoc, doc } from "firebase/firestore";
 import { addUserSubcollectionDoc, onAuthReady} from "./authentication.js";
 
 
@@ -21,7 +22,7 @@ form.innerHTML = `
 reminderGrid.parentElement.insertBefore(form, reminderGrid);
 
 
-function renderReminder(reminder) {
+function renderReminder(reminder, id) {
     const reminderDiv = document.createElement("div");
     reminderDiv.classList.add("reminder-example");
     reminderDiv.textContent = reminder.text;
@@ -33,9 +34,33 @@ function renderReminder(reminder) {
     const options = { month: "short", day: "numeric" };
     dateDiv.innerHTML = date.toLocaleDateString("en-US", options).replace(" ", "<br>");
 
-    reminderGrid.appendChild(reminderDiv);
-    reminderGrid.appendChild(dateDiv);
+   
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "✕";
+    deleteBtn.classList.add("delete-reminder-btn");
+
+    deleteBtn.addEventListener("click", async () => {
+        await deleteDoc(doc(db, "reminders", id));
+        // refresh list after deletion
+        loadReminders();
+    });
+
+    
+    const dateContainer = document.createElement("div");
+    dateContainer.classList.add("date-container");
+    dateContainer.appendChild(dateDiv);
+    dateContainer.appendChild(deleteBtn);
+
+    
+    const leftContainer = document.createElement("div");
+    leftContainer.classList.add("left-container");
+    leftContainer.appendChild(reminderDiv);
+    leftContainer.appendChild(dateContainer);
+
+   
+    reminderGrid.appendChild(leftContainer);
 }
+
 
 
 async function loadReminders() {
@@ -43,7 +68,8 @@ async function loadReminders() {
     if (!remindersCollection) return;
     const q = query(remindersCollection, orderBy("date", "asc"));
     const snapshot = await getDocs(q);
-    snapshot.forEach(doc => renderReminder(doc.data()));
+    snapshot.forEach(docSnap => renderReminder(docSnap.data(), docSnap.id));
+
 }
 
 
