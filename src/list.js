@@ -23,6 +23,7 @@ const TaskList = document.getElementById("task-list");
 const ListName = document.getElementById("list-name");
 const TaskNameInput = document.getElementById("task-name");
 const TaskDescInput = document.getElementById("task-desc");
+const TaskDueInput = document.getElementById("task-due");
 const AddTaskBtn = document.getElementById("add-task-btn");
 const saveBtn = document.querySelector(".save-button");
 
@@ -62,6 +63,7 @@ function renderUI() {
     TaskList.appendChild(empty);
     return;
   }
+  console.log("Due Date: " + taskDue);
 
   // Create a list container with name, description and checkbox
   localList.tasks.forEach((task) => {

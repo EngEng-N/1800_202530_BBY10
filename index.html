@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="images/logo.png" rel="icon" type="image/x-icon" />
     <link href="styles/style.css" rel="stylesheet" />
     <link href="styles/index.css" rel="stylesheet" />
 
@@ -19,26 +20,41 @@
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
+    <!-- Stuff for body goes here -->
+    <ul class="nav nav-tabs">
+        <li class="home-color">
+            <a class="nav-link active" aria-current="page" href="#">
+                <img src="images/logo.png" alt="star" class="icon">
+            </a>
+
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                aria-expanded="false">Dropdown</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">App Help</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Misc.</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </li>
+    </ul>
 
     <div class="jumbotron">
-      <h1 class="welcome-header">
-        Welcome to <span id="Life">Life</span><span id="Sync">Sync</span>
-      </h1>
-      <p class="lead">
-        Balancing life is <span class="red-hard">hard.</span> So let's balance
-        it for you
-      </p>
-      <hr class="my-4" />
-      <p></p>
-      <p class="lead">
-        <a
-          class="btn btn-primary btn-lg"
-          id="register-button"
-          href="register.html"
-          role="button"
-          >Get Started</a
-        >
-      </p>
+        <div class="tracking-in-contract">
+        <h1 class="welcome-header">Welcome to <span id="Life">Life</span><span id="Sync">Sync</span></h1>
+        </div>
+        <p class="lead">Balancing life is <span class="red-hard">hard.</span> So let's balance it for you</p>
+        <hr class="my-4">
+        <p></p>
+        <p class="lead">
+        <div class="scale-in-ver-center">
+        <a class="btn btn-primary btn-lg" id="register-button" href="register.html" role="button">Get Started</a>
+        </div>
+        </p>
     </div>
     <div class="spacer"></div>
 

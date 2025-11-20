@@ -12,11 +12,17 @@ body {
 }
 
 .task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 10rem;
+  height: auto;
   margin-top: 1rem;
   padding: 0.5rem;
   border: 2px solid black;
   border-radius: 20px;
   background-color: #ffefc1;
+  position: relative;
 }
 
 .task-head h3 {
@@ -31,4 +37,16 @@ body {
 
 .task-content p {
   margin: 0;
+}
+
+.taskDue {
+  text-align: center;
+  font-size: 2rem;
+  position: absolute;
+  right: 7rem;
+  top: 2rem;
+  border: 4% solid black;
+  background-color: white;
+  border-radius: 20px;
+  width: 8rem;
 }
