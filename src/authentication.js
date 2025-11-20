@@ -7,7 +7,10 @@
 // -------------------------------------------------------------
 
 // Import the initialized Firebase Authentication object
-import { auth } from "./firebaseConfig.js";
+import {
+  auth,
+   db,
+  } from "./firebaseConfig.js";
 
 // Import specific functions from the Firebase Auth SDK
 import {
@@ -18,6 +21,17 @@ import {
   signOut,
 } from "firebase/auth";
 
+import {
+  doc,
+  setDoc,
+  serverTimestamp,
+  collection,
+  addDoc,
+  getDoc,
+  deleteDoc,
+  query,
+  orderBy,
+} from "firebase/firestore";
 // -------------------------------------------------------------
 // loginUser(email, password)
 // -------------------------------------------------------------
@@ -52,8 +66,29 @@ export async function loginUser(email, password) {
 // -------------------------------------------------------------
 export async function signupUser(name, email, password) {
   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  await updateProfile(userCredential.user, { displayName: name });
-  return userCredential.user;
+  const user = userCredential.user;
+  
+  //This code creates the user document in Firebase
+await setDoc(doc(db, "Users", user.uid), {
+  Name: name,
+  Email: email,
+  createdAt: serverTimestamp()
+});
+
+    await updateProfile(user, { displayName: name });
+    return user;
+};
+
+
+// This adds a document to the subcollection of Reminders
+export async function addUserSubcollectionDoc(uid, remindersCollection, data) {
+    if (!uid || !"Reminders") throw new Error("Missing uid and/or Reminders collection");
+  const collectionRef = collection(db, "Users", uid, remindersCollection);
+  const documentRef = await addDoc(collectionRef, {
+    ...data,
+    createdAt: serverTimestamp()
+  });
+  return documentRef;
 }
 
 // -------------------------------------------------------------

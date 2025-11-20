@@ -49,6 +49,7 @@ nav {
 .add-list h3 {
   color: #fed766;
   margin-bottom: 0;
+  font-size: clamp(1.15rem, 20vh, 1.5rem);
 }
 
 .add-task p,
@@ -75,110 +76,131 @@ nav {
   color: black;
 }
 
+@media screen and (min-width: 768px) {
+  .task-list-container {
+    display: none;
+    height: auto;
+  }
+}
+
 body {
-    opacity: 0;
-    animation: pageFade 0.5s ease-out forwards;
+  opacity: 0;
+  animation: pageFade 0.5s ease-out forwards;
 }
 
 @keyframes pageFade {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
-
 header {
-    opacity: 0;
-    transform: translateY(-10px);
-    animation: headerFade 0.5s ease-out 0.1s forwards;
-    
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: headerFade 0.5s ease-out 0.1s forwards;
 }
 
 @keyframes headerFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-
 #calendar {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: calendarFade 0.5s ease-out 0.15s forwards;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: calendarFade 0.5s ease-out 0.15s forwards;
 }
 
 @keyframes calendarFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-main h1, main p, main a {
-    opacity: 0;
-    transform: translateY(8px);
-    animation: mainContentFade 0.5s ease-out forwards;
+main h1,
+main p,
+main a {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: mainContentFade 0.5s ease-out forwards;
 }
 
-main h1 { animation-delay: 0.25s; }
-main p { animation-delay: 0.35s; }
-main a { animation-delay: 0.45s; }
+main h1 {
+  animation-delay: 0.25s;
+}
+main p {
+  animation-delay: 0.35s;
+}
+main a {
+  animation-delay: 0.45s;
+}
 
 @keyframes mainContentFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.add-task, .add-list {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: taskCardFade 0.5s ease-out forwards;
+.add-task,
+.add-list {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: taskCardFade 0.5s ease-out forwards;
 }
 
-.add-task { animation-delay: 0.5s; }
-.add-list { animation-delay: 0.6s; }
+.add-task {
+  animation-delay: 0.5s;
+}
+.add-list {
+  animation-delay: 0.6s;
+}
 
 /* Subtle hover effect for cards */
-.add-task:hover, .add-list:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+.add-task:hover,
+.add-list:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 @keyframes taskCardFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
 
 .image-box img {
-    opacity: 0;
-    transform: scale(0.95);
-    animation: imgFade 0.5s ease-out forwards;
+  opacity: 0;
+  transform: scale(0.95);
+  animation: imgFade 0.5s ease-out forwards;
 }
 
-.image-box img:nth-child(1) { animation-delay: 0.55s; }
-.image-box img:nth-child(2) { animation-delay: 0.65s; }
+.image-box img:nth-child(1) {
+  animation-delay: 0.55s;
+}
+.image-box img:nth-child(2) {
+  animation-delay: 0.65s;
+}
 
 @keyframes imgFade {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 footer {
-    opacity: 0;
-    animation: footerFade 0.5s ease-out 0.7s forwards;
+  opacity: 0;
+  animation: footerFade 0.5s ease-out 0.7s forwards;
 }
 
 @keyframes footerFade {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }

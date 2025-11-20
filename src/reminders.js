@@ -2,12 +2,14 @@
 import { collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "./firebaseConfig.js";
 import { deleteDoc, doc } from "firebase/firestore";
+import { addUserSubcollectionDoc, onAuthReady} from "./authentication.js";
 
 
 const reminderGrid = document.querySelector(".reminder-main");
 
 
-const remindersCollection = collection(db, "reminders");
+let remindersCollection = null;
+let currentUserUid = null;
 
 
 const form = document.createElement("form");
@@ -63,6 +65,7 @@ function renderReminder(reminder, id) {
 
 async function loadReminders() {
     reminderGrid.innerHTML = ""; 
+    if (!remindersCollection) return;
     const q = query(remindersCollection, orderBy("date", "asc"));
     const snapshot = await getDocs(q);
     snapshot.forEach(docSnap => renderReminder(docSnap.data(), docSnap.id));
@@ -76,11 +79,37 @@ form.addEventListener("submit", async (e) => {
     const date = document.getElementById("reminderDate").value;
 
     if (!text || !date) return;
+    if(!currentUserUid) {
+        alert("Must be signed in to save reminders!")
+        return;
+    }
 
-    await addDoc(remindersCollection, { text, date });
+    try {
+    await addUserSubcollectionDoc(currentUserUid, "Reminders", {
+        reminderName: text,
+        text,
+        date,
+});   
     form.reset();
-    loadReminders();
+    await loadReminders();
+} catch (err) {
+     console.error("Failed to save reminder:", err);
+        alert("Unable to save reminder. Try again.");
+}
 });
+
+
+onAuthReady((user) => {
+    if (user) {
+        currentUserUid = user.uid;
+        remindersCollection = collection(db, "Users", user.uid, "Reminders"); // creates reminders subcollection
+        loadReminders();
+    } else {
+        currentUserUid = null;
+        remindersCollection = null; //No collection will be fetched because no one is signed in.
+        reminderGrid.innerHTML = "";
+    }
+    });
 
 // Initial load
 loadReminders();
