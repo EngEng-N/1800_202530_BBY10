@@ -22,6 +22,10 @@
 
 }
 
+body {
+  background-color: #edeef2 !important;
+}
+
 .reminder-example {
     grid-column: 1/2;
     border: 5px solid #b3ac98;

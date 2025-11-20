@@ -1,5 +1,5 @@
 body {
-  background-color: #bbffd2;
+  background-color: #edeef2 !important;
 }
 
 nav {
@@ -91,6 +91,7 @@ header {
     opacity: 0;
     transform: translateY(-10px);
     animation: headerFade 0.5s ease-out 0.1s forwards;
+    
 }
 
 @keyframes headerFade {
