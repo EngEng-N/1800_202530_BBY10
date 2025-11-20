@@ -1,0 +1,127 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #bbffd2;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: hsl(0, 0%, 24%, 0.05);
+  color: white;
+  position: relative;
+}
+
+.logo {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links .logout-btn:hover {
+  color: white;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #bbffd2;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    display: none;
+    z-index: 999;
+  }
+
+  .nav-links li,
+  .nav-links .logout-btn {
+    display: block;
+    text-align: center;
+    width: 80%;
+    width: 30%;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    background-color: pink;
+    border-radius: 1rem;
+    border: 2px solid black;
+  }
+
+  .nav-links a {
+    padding: 0.5rem;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5.5px, -6px);
+  }
+
+  .nav-links li:nth-child(1) {
+    background-color: #ffd6e0;
+  }
+  .nav-links li:nth-child(2) {
+    background-color: #c8f7f2;
+  }
+  .nav-links li:nth-child(3) {
+    background-color: #aef7c7;
+  }
+  .nav-links li:nth-child(4) {
+    background-color: #b3b3ff;
+  }
+}
