@@ -2,7 +2,7 @@ body {
   background-color: #bbffd2;
 }
 
-nav {
+.bottom-nav {
   background-color: rgba(61, 61, 61, 0.1);
   display: flex;
   justify-content: center;

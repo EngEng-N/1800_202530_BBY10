@@ -63,7 +63,6 @@ function renderUI() {
     TaskList.appendChild(empty);
     return;
   }
-  console.log("Due Date: " + taskDue);
 
   // Create a list container with name, description and checkbox
   localList.tasks.forEach((task) => {
@@ -86,6 +85,14 @@ function renderUI() {
 
     const taskDesc = document.createElement("p");
     taskDesc.innerHTML = `Description:<br>${task.description || ""}`;
+
+    if (task.dueDate) {
+      const taskDue = document.createElement("p");
+      taskDue.classList.add("task-due-date");
+      // Format the date for display if needed, or just show the string
+      taskDue.innerHTML = `Due Date: **${task.dueDate}**`;
+      taskContent.appendChild(taskDue);
+    }
 
     // Adding h3 and checkbox into head div
     taskHead.appendChild(taskCheckbox);
@@ -122,6 +129,7 @@ function updateListName() {
 function addTask() {
   const taskName = TaskNameInput.value.trim();
   const taskDesc = TaskDescInput.value.trim();
+  const taskDue = TaskDueInput.value;
 
   // Check if the task name is empty
   if (!taskName) {
@@ -133,11 +141,13 @@ function addTask() {
   localList.tasks.push({
     name: taskName,
     description: taskDesc,
+    dueDate: taskDue || null,
   });
 
   // Clear the inputs and re-render the front-end
   TaskNameInput.value = "";
   TaskDescInput.value = "";
+  TaskDueInput.value = "";
   renderUI();
 }
 
@@ -200,6 +210,7 @@ async function loadActiveListAndTasks() {
         name: data.name || docSnap.id,
         description: data.description || "",
         createdAt: data.createdAt || null,
+        dueDate: data.dueDate || null,
       });
     });
 
@@ -251,6 +262,8 @@ async function saveAll() {
         // Compare description (and date when added later)
         const remoteDesc = remote.description || "";
         const localDesc = task.description || "";
+        const remoteDue = remote.dueDate || "";
+        const localDue = task.dueDate || "";
 
         // Only overwrite if description changed (or other fields added later on)
         if (remoteDesc !== localDesc) {
@@ -259,6 +272,7 @@ async function saveAll() {
             createdAt: serverTimestamp(),
             name: task.name,
             description: task.description || "",
+            dueDate: task.dueDate || null,
           });
         } else {
           // Descriptions match; skip writing to save writes
@@ -269,6 +283,7 @@ async function saveAll() {
           createdAt: serverTimestamp(),
           name: task.name,
           description: task.description || "",
+          dueDate: task.dueDate || null,
         });
       }
     }
