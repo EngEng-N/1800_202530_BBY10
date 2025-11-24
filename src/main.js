@@ -101,11 +101,7 @@ function renderListLink(listName, containerElement) {
   containerElement.appendChild(listContainer);
 }
 
-// --- Initialization ---
-
 document.addEventListener("DOMContentLoaded", () => {
-  // ... existing navigation component setup logic ...
-
-  // 🔥 Call the list loading function after the DOM is ready
+  // Call the list loading function after the DOM is ready
   loadAllLists();
 });
