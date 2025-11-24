@@ -80,16 +80,27 @@ await setDoc(doc(db, "Users", user.uid), {
 };
 
 
-// This adds a document to the subcollection of Reminders
+// This adds a document to the subcollection of Reminders for each user
 export async function addUserSubcollectionDoc(uid, remindersCollection, data) {
+   
     if (!uid || !"Reminders") throw new Error("Missing uid and/or Reminders collection");
-  const collectionRef = collection(db, "Users", uid, remindersCollection);
-  const documentRef = await addDoc(collectionRef, {
+  const reminderCollectionRef = collection(db, "Users", uid, remindersCollection);
+  const reminderDocumentRef = await addDoc(collectionRef, {
     ...data,
     createdAt: serverTimestamp()
   });
-  return documentRef;
+
+  if (!uid || !"Tasks") throw new Error("Missing uid and/or Tasks collection");
+    const taskColRef = collection(db, "Users", uid, taskCollection);
+    const taskDocRef = await addDoc(collectionRef, {
+      ...data,
+    createdAt: serverTimestamp()
+    });
+    
+    return documentRef; 
 }
+
+
 
 // -------------------------------------------------------------
 // logoutUser()

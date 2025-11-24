@@ -1,12 +1,19 @@
 .reminder-main {
-    display: grid;
-    grid-template-columns: 1.2fr 0.6fr;
-    grid-auto-rows: 6rem;
-    row-gap: 1rem;
-    column-gap: 0.25rem; 
-    margin-top: 2rem;
-    margin-bottom: 8rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.6fr;
+  grid-auto-rows: 6rem;
+  row-gap: 1rem;
+  column-gap: 0.25rem; 
+  margin-top: 2rem;
+  margin-bottom: 8rem;
 }
+.page-header {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: headerSlideIn 0.5s ease-out 0.1s forwards;
+        font-size: clamp(4vw, calc(5rem + 1%), 30vw) !important;
+}
+
 .reminder-deadline {
     font-family: "K2D ExtraBold";
     grid-column: 2/3;
@@ -154,11 +161,6 @@ body {
 }
 
 
-.page-header {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: headerSlideIn 0.5s ease-out 0.1s forwards;
-}
 
 @keyframes headerSlideIn {
     to {
