@@ -3,6 +3,11 @@
     margin-top: 22vh;
 }
 
+/* Ensure index page background is applied (overrides caching/other rules) */
+body {
+  background-color: #edeef2 !important;
+}
+
 
 
 .welcome-header {
@@ -10,10 +15,6 @@
     
 }
 
-body {
-  background-color: #edeef2;
-
-}
 
 .red-hard {
     color: rgb(159, 45, 45);
@@ -34,7 +35,7 @@ color: rgb(254, 105, 105);
 }
 
 #Sync {
-color: #73af85;
+color: #8ba189;
 }
 
 #register-button {
@@ -46,11 +47,10 @@ border-radius: 40px;
 }
 
 
-
 .nav-tabs {
   display: flex;
   align-items: center;      
-  background-color: #79a687;
+  background-color: #8ba189;
   border-bottom: none;
   padding: 0 10px;
   height: 60px;             

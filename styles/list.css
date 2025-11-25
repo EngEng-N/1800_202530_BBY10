@@ -17,6 +17,7 @@
 }
 
 body {
+<<<<<<< HEAD
   background-color: #ffffff;
   opacity: 0;
   animation: fadeInPage 0.4s ease-out forwards;
@@ -26,6 +27,9 @@ body {
   display: grid;
   grid-template-columns: 1.2fr 0.6fr;
   grid-auto-rows: min(6rem);
+=======
+  background-color: #edeef2;
+>>>>>>> origin
 }
 
 .list-section {
