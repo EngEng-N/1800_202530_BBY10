@@ -7,6 +7,9 @@
     margin-top: 2rem;
     margin-bottom: 8rem;
 }
+
+
+
 .reminder-deadline {
     font-family: "K2D ExtraBold";
     grid-column: 2/3;
@@ -14,12 +17,16 @@
     font-size: 2.5rem;
     line-height: 90%;
     align-content: center;
-    border: 4px solid black;
+    border: 4px solid #b3ac98;
     background-color: white;
     border-radius: 20px;
     width: 8rem;
     justify-self: center;
 
+}
+
+body {
+  background-color: #edeef2 !important;
 }
 
 .reminder-example {
@@ -56,7 +63,7 @@
   border-radius: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: fit-content;
-  margin-left: 2rem; 
+  margin-left: 1rem; 
 }
 
 /* Text input */
@@ -87,6 +94,48 @@
   border-color: #7b6f50;
   box-shadow: 0 0 5px #d3c49c;
 }
+
+/* Time input */
+#reminderTime {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid #b3ac98;
+  border-radius: 1.5rem;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#reminderTime:focus {
+  border-color: #7b6f50;
+  box-shadow: 0 0 5px #d3c49c;
+}
+
+
+.reminder-deadline {
+    font-family: "K2D", sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;     
+    line-height: 1.2;
+    color: #2f2f2f;
+    padding-top: 0.4rem;
+}
+
+
+.date-part {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+
+.time-part {
+    font-size: 1.3rem;    
+    font-weight: 600;
+    color: #555;          
+    display: inline-block;
+    margin-top: 0.3rem;
+}
+
+
 
 /* Add Reminder button */
 #reminderForm button {
@@ -158,6 +207,10 @@ body {
     opacity: 0;
     transform: translateY(10px);
     animation: headerSlideIn 0.5s ease-out 0.1s forwards;
+    font-size: 4.6rem !important;  
+    margin-left: 1rem;
+    margin-top: 1rem; 
+    
 }
 
 @keyframes headerSlideIn {
@@ -219,5 +272,24 @@ body {
         opacity: 1;
     }
 }
+.edit-reminder-btn {
+    width: 1.6rem;
+    height: 1.6rem;
+    border: none;
+    background: #ffd86b;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-reminder-btn:hover {
+    background: #d4a72c;
+}
+
+
 
 
