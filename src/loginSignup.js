@@ -104,27 +104,34 @@ function initAuthUI() {
 
     // Signup form submit
     signupForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        hideError();
-        const name = document.querySelector('#signupName')?.value?.trim() ?? '';
-        const email = document.querySelector('#signupEmail')?.value?.trim() ?? '';
-        const password = document.querySelector('#signupPassword')?.value ?? '';
-        if (!name || !email || !password) {
-            showError('Please fill in name, email, and password.');
-            return;
-        }
-        setSubmitDisabled(signupForm, true);
-        try {
-            await signupUser(name, email, password);
-            // Redirect to login page after successful signup
-            location.href = 'login.html';
-        } catch (err) {
-            showError(authErrorMessage(err));
-            console.error(err);
-        } finally {
-            setSubmitDisabled(signupForm, false);
-        }
-    });
+    e.preventDefault();
+    hideError();
+
+    const name = document.querySelector('#signupName')?.value?.trim() ?? '';
+    const email = document.querySelector('#signupEmail')?.value?.trim() ?? '';
+    const password = document.querySelector('#signupPassword')?.value ?? '';
+
+    if (!name || !email || !password) {
+        showError('Please fill in name, email, and password.');
+        return;
+    }
+
+    setSubmitDisabled(signupForm, true);
+
+    try {
+        await signupUser(name, email, password);
+
+        // ✔ Auto-login, now go directly to main page
+        window.location.replace('main.html');
+
+    } catch (err) {
+        showError(authErrorMessage(err));
+        console.error(err);
+    } finally {
+        setSubmitDisabled(signupForm, false);
+    }
+});
+
 }
 
 // --- Initialize UI on DOMContentLoaded ---
