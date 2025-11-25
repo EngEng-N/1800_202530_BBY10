@@ -1,7 +1,12 @@
 import { documentId } from "firebase/firestore/lite";
 import "../styles/list.css";
 
-import { logoutUser, checkAuthState } from "./authentication.js";
+import {
+  logoutUser,
+  checkAuthState,
+  addUserSubcollectionDoc,
+  onAuthReady,
+} from "./authentication.js";
 // Step 1
 // Import the methods from firebase
 // Firebase Database
@@ -49,7 +54,15 @@ let localList = {
 function renderUI() {
   // Make the h2 edittable
   // Render the h2
-  ListName.textContent = localList.name || "Untitled List";
+  ListName.textContent = localList.name || "Type your list here";
+
+  ListName.addEventListener("input", () => {
+    if (ListName.textContent.trim().length > 0) {
+      ListName.classList.add("has-text");
+    } else {
+      ListName.classList.remove("has-text");
+    }
+  });
 
   // Render the task(s)
   // Check if there are existing tasks
@@ -66,6 +79,8 @@ function renderUI() {
 
   // Create a list container with name, description and checkbox
   localList.tasks.forEach((task) => {
+    //This is needed for the due date to display next to the task
+
     const taskContainer = document.createElement("div");
     taskContainer.classList.add("task-container");
 
@@ -76,23 +91,28 @@ function renderUI() {
     taskContent.classList.add("task-content");
 
     const taskName = document.createElement("h3");
-    taskName.classList = task.name;
+    taskName.classList.add("task-name");
+    taskName.className = task.name;
     taskName.innerHTML = task.name;
 
     const taskCheckbox = document.createElement("input");
+    taskCheckbox.classList.add("task-checkbox");
     taskCheckbox.type = "checkbox";
     taskCheckbox.id = task.name;
 
     const taskDesc = document.createElement("p");
-    taskDesc.innerHTML = `Description:<br>${task.description || ""}`;
+    taskDesc.classList.add("task-desc");
+    taskDesc.innerHTML = `${task.description || ""}`;
 
-    if (task.dueDate) {
-      const taskDue = document.createElement("p");
-      taskDue.classList.add("task-due-date");
-      // Format the date for display if needed, or just show the string
-      taskDue.innerHTML = `Due Date: **${task.dueDate}**`;
-      taskContent.appendChild(taskDue);
-    }
+    const taskDue = document.createElement("div");
+    taskDue.classList.add("task-due");
+    taskDue.innerHTML = `${task.due}`;
+
+    const date = new Date(task.due + "T00:00:00");
+    const options = { month: "short", day: "numeric" };
+    taskDue.innerHTML = date
+      .toLocaleDateString("en-US", options)
+      .replace(" ", "<br>");
 
     // Adding h3 and checkbox into head div
     taskHead.appendChild(taskCheckbox);
@@ -105,8 +125,8 @@ function renderUI() {
     taskContainer.appendChild(taskHead);
     taskContainer.appendChild(taskContent);
 
-    // Finally add the container to task-list div
     TaskList.appendChild(taskContainer);
+    TaskList.appendChild(taskDue);
   });
 }
 
@@ -129,7 +149,7 @@ function updateListName() {
 function addTask() {
   const taskName = TaskNameInput.value.trim();
   const taskDesc = TaskDescInput.value.trim();
-  const taskDue = TaskDueInput.value;
+  const taskDue = TaskDueInput.value.trim();
 
   // Check if the task name is empty
   if (!taskName) {
@@ -141,7 +161,7 @@ function addTask() {
   localList.tasks.push({
     name: taskName,
     description: taskDesc,
-    dueDate: taskDue || null,
+    due: taskDue,
   });
 
   // Clear the inputs and re-render the front-end
@@ -158,6 +178,7 @@ async function loadActiveListAndTasks() {
     // Firestore document that stores which list is active
     const activeSnap = await getDoc(doc(db, "settings", "activeList"));
 
+    /*Code no longer needed but keeping just in case
     // Check if there is an active list in Firebase
     if (!activeSnap.exists()) {
       // No active list set in Firestore - start with empty localList
@@ -166,7 +187,7 @@ async function loadActiveListAndTasks() {
       renderUI();
       return;
     }
-
+    
     firebaseActiveListName = activeSnap.data().name || null;
     // If no active list exists
     // Creates a local empty list with empty task
@@ -175,28 +196,26 @@ async function loadActiveListAndTasks() {
       renderUI();
       return;
     }
+    */
 
-    // Check if the list in the collection exists
-    const testRef = collection(db, firebaseActiveListName);
-    const testSnap = await getDocs(testRef);
+    const currentUser = await new Promise((resolve) => {
+      const unsubscribe = onAuthReady((user) => {
+        unsubscribe();
+        resolve(user);
+      });
+    });
 
-    // If the collection is empty AND has no metadata doc = it does not exist
-    if (testSnap.empty) {
-      await setDoc(doc(db, "settings", "activeList"), { name: null });
-
-      firebaseActiveListName = null;
-      localList = { name: "", tasks: [] };
-      renderUI();
+    if (!currentUser) {
+      console.warn("Not signed in → cannot load tasks.");
       return;
     }
 
-    // Update localList.name to match the Firebase list name
-    // Clear any previous tasks
-    localList.name = firebaseActiveListName;
+    const uid = currentUser.uid;
+
     localList.tasks = [];
 
     // Get tasks from the collection (skip the 'metadata' doc)
-    const tasksRef = collection(db, firebaseActiveListName);
+    const tasksRef = collection(db, "Users", uid, "Tasks");
     const snapshot = await getDocs(tasksRef);
 
     // docSnap is the document inside Firestore
@@ -209,6 +228,7 @@ async function loadActiveListAndTasks() {
       localList.tasks.push({
         name: data.name || docSnap.id,
         description: data.description || "",
+        due: data.due,
         createdAt: data.createdAt || null,
         dueDate: data.dueDate || null,
       });
@@ -219,7 +239,6 @@ async function loadActiveListAndTasks() {
     renderUI();
   } catch (error) {
     console.error("Error loading the active list:", error);
-    alert("Failed to load the active list!");
   }
 }
 
@@ -244,66 +263,47 @@ async function saveAll() {
   }
 
   try {
+    const currentUser = await new Promise((resolve) => {
+      const unsubscribe = onAuthReady((user) => {
+        unsubscribe();
+        resolve(user);
+      });
+    });
+
+    const uid = currentUser.uid;
+
     // Ensure metadata exists for this list (creates collection implicitly)
     // It stores info like creation time.
     // This is so that we can load list names later.
-    await setDoc(doc(db, listName, "metadata"), {
+    await setDoc(doc(db, "Users", uid, "Tasks", "metadata"), {
       createdAt: serverTimestamp(),
       title: listName,
     });
 
-    // For each local task, check Firestore and decide whether to write
-    for (const task of localList.tasks) {
-      const taskDocRef = doc(db, listName, task.name);
-      const taskSnap = await getDoc(taskDocRef);
-
-      if (taskSnap.exists()) {
-        const remote = taskSnap.data();
-        // Compare description (and date when added later)
-        const remoteDesc = remote.description || "";
-        const localDesc = task.description || "";
-        const remoteDue = remote.dueDate || "";
-        const localDue = task.dueDate || "";
-
-        // Only overwrite if description changed (or other fields added later on)
-        if (remoteDesc !== localDesc) {
-          // may want to preserve remote.createdAt in future
-          await setDoc(taskDocRef, {
-            createdAt: serverTimestamp(),
-            name: task.name,
-            description: task.description || "",
-            dueDate: task.dueDate || null,
-          });
-        } else {
-          // Descriptions match; skip writing to save writes
-        }
-      } else {
-        // New task, create it
-        await setDoc(taskDocRef, {
-          createdAt: serverTimestamp(),
-          name: task.name,
-          description: task.description || "",
-          dueDate: task.dueDate || null,
-        });
-      }
+    if (!currentUser) {
+      alert("You must be signed in to save tasks.");
+      return;
     }
 
-    // If there are remote tasks that were removed locally, they will not get delete in Firestore
-    // Implement the remove button and codes later
+    // For each local task, check Firestore and decide whether to write
+    for (const task of localList.tasks) {
+      const taskDocRef = doc(db, "Users", uid, "Tasks", task.name);
 
-    // Update settings/activeList to this list name
-    await setDoc(doc(db, "settings", "activeList"), { name: listName });
+      const data = {
+        name: task.name,
+        description: task.description || "",
+        due: task.due || null,
+        createdAt: serverTimestamp(),
+      };
+      await setDoc(taskDocRef, data, { merge: true });
+    }
 
-    // Update the firebaseActiveListName tracker to reflect the saved list
-    firebaseActiveListName = listName;
-
-    alert("List saved successfully!");
+    alert("Saved to your user account!");
   } catch (error) {
-    console.error("Error saving list:", error);
-    alert("Failed to save list. Check console for details.");
+    console.error(error);
+    alert("Save failed.");
   }
 }
-
 // Event listeners
 // When the list name loses focus, update the local state
 ListName.addEventListener("blur", () => {
@@ -333,6 +333,6 @@ if (saveBtn) {
   console.warn(".save-button not found in DOM. Save will not be available.");
 }
 
-window.onload = () => {
+onAuthReady((user) => {
   loadActiveListAndTasks();
-};
+});
