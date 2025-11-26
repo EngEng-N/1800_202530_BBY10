@@ -7,17 +7,12 @@
   margin-top: 2rem;
   margin-bottom: 8rem;
 }
-<<<<<<< HEAD
 .page-header {
     opacity: 0;
     transform: translateY(10px);
     animation: headerSlideIn 0.5s ease-out 0.1s forwards;
         font-size: clamp(4vw, calc(5rem + 1%), 30vw) !important;
 }
-=======
-
-
->>>>>>> origin
 
 .reminder-deadline {
     font-family: "K2D ExtraBold";
@@ -212,8 +207,6 @@ body {
 }
 
 
-<<<<<<< HEAD
-=======
 .page-header {
     opacity: 0;
     transform: translateY(10px);
@@ -223,7 +216,6 @@ body {
     margin-top: 1rem; 
     
 }
->>>>>>> origin
 
 @keyframes headerSlideIn {
     to {

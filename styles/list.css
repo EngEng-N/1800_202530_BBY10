@@ -56,7 +56,7 @@ h3 {
 .task-inputs {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 2rem;
   background-color: #fff9dc;
@@ -64,8 +64,7 @@ h3 {
   border-radius: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: fit-content;
-  margin-left: 2rem;
-  margin: 2rem;
+  margin: 2rem auto;
 }
 
 #task-name,
