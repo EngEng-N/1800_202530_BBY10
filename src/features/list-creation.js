@@ -63,23 +63,22 @@ function renderUI() {
     taskName.classList = task.name;
     taskName.innerHTML = task.name;
 
-    const taskCheckbox = document.createElement("input");
-    taskCheckbox.type = "checkbox";
-    taskCheckbox.id = task.name;
-
     const taskDesc = document.createElement("p");
     taskDesc.innerHTML = `Description:<br>${task.description || ""}`;
 
+    let taskDue = null;
+
     if (task.dueDate) {
-      const taskDue = document.createElement("p");
-      taskDue.classList.add("task-due-date");
+      taskDue = document.createElement("div");
+      taskDue.classList.add("task-due");
+      const dueDate = document.createElement("p");
+      dueDate.classList.add("task-due-date");
       // Format the date for display if needed, or just show the string
-      taskDue.innerHTML = `Due Date: **${task.dueDate}**`;
-      taskContent.appendChild(taskDue);
+      dueDate.innerHTML = `Due Date: ${task.dueDate}`;
+      taskDue.appendChild(dueDate);
     }
 
     // Adding h3 and checkbox into head div
-    taskHead.appendChild(taskCheckbox);
     taskHead.appendChild(taskName);
 
     // Adding p into content div
@@ -91,6 +90,10 @@ function renderUI() {
 
     // Finally add the container to task-list div
     TaskList.appendChild(taskContainer);
+
+    if (taskDue) {
+      TaskList.append(taskDue);
+    }
   });
 }
 
