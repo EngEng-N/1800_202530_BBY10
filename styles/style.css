@@ -173,7 +173,7 @@ button[onclick="history.back()"] {
 
 .save-button:hover:hover,
 button[onclick="history.back()"]:hover {
-  background-color: #4d7d5b; 
+  background-color: #4d7d5b;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
@@ -193,8 +193,8 @@ button[onclick="history.back()"]:hover {
   font-size: clamp(4vw, calc(7rem + 1%), 40vw);
 }
 
-.navbar-color {
-  background-color: #8ba189;
+/* .navbar-color {
+  background-color: #73af85;
 }
 
 .nav {
@@ -214,7 +214,7 @@ footer {
   background-color: #8ba189;
 }
 
-.nav-tabs .nav-item.show .nav-link,
+/* .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
   background-color: #8ba189;
   border-radius: 0;
@@ -241,7 +241,7 @@ footer {
   border-radius: 12px;
   border: 0px;
   color: white;
-}
+} */
 
 .dropdown-menu:hover {
   background-color: #4d7d5b;
@@ -263,9 +263,9 @@ footer {
   background-color: #4d7d5b;
 }
 
-.nav-tabs .nav-link:focus {
+/* .nav-tabs .nav-link:focus {
   border: 0px;
-}
+} */
 
 #signupView {
   opacity: 0;
@@ -281,10 +281,10 @@ footer {
 }
 
 /* Navbar fade-in */
-.nav {
+/* .nav {
   opacity: 0;
   animation: fadeInNav 0.8s ease-out forwards;
-}
+} */
 
 @keyframes fadeInNav {
   to {
@@ -292,15 +292,20 @@ footer {
   }
 }
 
-
-.navbar-brand img {
+/* .navbar-brand img {
   animation: floatLogo 4s ease-in-out infinite;
-}
+} */
 
 @keyframes floatLogo {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .form-control {
@@ -323,7 +328,6 @@ footer {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18);
 }
 
-
 a.btn-link {
   transition: opacity 0.2s ease;
 }
@@ -331,18 +335,16 @@ a.btn-link:hover {
   opacity: 0.7;
 }
 
-
-
-
 body {
   opacity: 0;
   animation: bodyFade 0.6s ease-out forwards;
 }
 
 @keyframes bodyFade {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
-
 
 #loginView {
   opacity: 0;
@@ -357,29 +359,33 @@ body {
   }
 }
 
-
 .navbar-brand img {
   opacity: 0;
-  animation:
-    fadeInLogo 0.6s ease-out forwards 0.2s,
+  animation: fadeInLogo 0.6s ease-out forwards 0.2s,
     logoDrift 8s ease-in-out infinite;
 }
 
 @keyframes fadeInLogo {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes logoDrift {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-2px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-
 .form-control {
-  transition: border-color 0.25s ease,
-              box-shadow 0.25s ease,
-              transform 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.2s ease;
 }
 
 .form-control:focus {
@@ -388,11 +394,9 @@ body {
   transform: translateY(-1px);
 }
 
-
 .btn {
-  transition: background-color 0.2s ease,
-              transform 0.25s ease,
-              box-shadow 0.25s ease;
+  transition: background-color 0.2s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .btn:hover {
@@ -400,11 +404,9 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
-
 .back-button {
-  transition: background-color 0.25s ease,
-              transform 0.2s ease,
-              box-shadow 0.25s ease;
+  transition: background-color 0.25s ease, transform 0.2s ease,
+    box-shadow 0.25s ease;
 }
 
 .back-button:hover {
@@ -412,7 +414,6 @@ body {
   background-color: #4d7d5b !important;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
 }
-
 
 a.btn-link {
   transition: opacity 0.25s ease;
@@ -422,26 +423,28 @@ a.btn-link:hover {
   opacity: 0.6;
 }
 
-
-.nav {
+/* .nav {
   opacity: 0;
   animation: navFade 0.6s ease-out forwards;
-}
+} */
 
 @keyframes navFade {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
-
 footer {
-position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #73af85;
-    color: white;
-    text-align: center;
-    align-self: center;
-    margin-bottom: -0.2rem;
-    font-size: 140%;
+  position: absolute;
+  width: 100%;
+  background-color: #73af85;
+  color: white;
+  text-align: center;
+  align-self: center;
+  font-size: 140%;
+  margin-top: 1rem;
+}
+
+footer p {
+  margin: 0;
 }
