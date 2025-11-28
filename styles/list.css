@@ -17,6 +17,7 @@
 }
 
 body {
+  background-color: #edeef2;
   background-color: #ffffff;
   opacity: 0;
   animation: fadeInPage 0.4s ease-out forwards;

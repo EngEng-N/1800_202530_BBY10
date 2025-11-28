@@ -216,6 +216,13 @@ body {
     margin-top: 1rem; 
     
 }
+<<<<<<< HEAD
+
+footer {
+  background-color: #8ba189 !important;
+}
+=======
+>>>>>>> main
 
 @keyframes headerSlideIn {
     to {
