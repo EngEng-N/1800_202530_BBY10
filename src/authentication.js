@@ -80,32 +80,33 @@ await setDoc(doc(db, "Users", user.uid), {
 };
 
 
-// This adds a document to the subcollection of Reminders for each user
-export async function addUserSubcollectionDoc(uid, remindersCollection, data) {
-   
-    if (!uid || !"Reminders") throw new Error("Missing uid and/or Reminders collection");
-  const reminderCollectionRef = collection(db, "Users", uid, remindersCollection);
-  const reminderDocumentRef = await addDoc(collectionRef, {
+// Subcollection for users | Reminders and Tasks
+export async function addReminder(uid, data) {
+  return addUserSubcollectionDoc(uid, "Reminders", data);
+}
+
+export async function addTask(uid, data) {
+  return addUserSubcollectionDoc(uid, "Tasks", data);
+}
+
+export async function addUserSubcollectionDoc(uid, subcollectionName, data) {
+  if (!uid) throw new Error("Missing uid");
+  if (!subcollectionName) throw new Error("Missing subcollection name");
+
+  const subColRef = collection(db, "Users", uid, subcollectionName);
+
+  const newDocRef = await addDoc(subColRef, {
     ...data,
     createdAt: serverTimestamp()
   });
 
-  if (!uid || !"Tasks") throw new Error("Missing uid and/or Tasks collection");
-    const taskColRef = collection(db, "Users", uid, taskCollection);
-    const taskDocRef = await addDoc(collectionRef, {
-      ...data,
-    createdAt: serverTimestamp()
-    });
-    
-    return documentRef; 
+  return newDocRef;
 }
 
-
-
-// -------------------------------------------------------------
-// logoutUser()
-// -------------------------------------------------------------
-// Signs out the currently logged-in user and redirects them
+  // -------------------------------------------------------------
+  // logoutUser()
+  // -------------------------------------------------------------
+  // Signs out the currently logged-in user and redirects them
 // back to the login page (index.html).
 //
 // Usage:
