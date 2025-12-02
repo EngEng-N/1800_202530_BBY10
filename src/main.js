@@ -17,6 +17,13 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+import {
+  logoutUser,
+  checkAuthState,
+  addUserSubcollectionDoc,
+  onAuthReady,
+} from "./authentication.js";
+
 import { db } from "./firebaseConfig";
 
 // Initialize authentication state monitoring
@@ -46,15 +53,27 @@ if (window.location.pathname.endsWith("main.html")) {
   });
 }
 
-// --- Firebase List Display Logic (NEW) ---
-
+// Function to load all lists from Firestore and display them
 async function loadAllLists() {
-  // 1. Fetch documents from the 'list_metadata' collection in Firebase.
-  // 2. Iterate through the results.
-  // 3. For each list, call renderListLink() to create the HTML element.
+  // 1. Get the authenticated user's UID
+  const currentUser = await new Promise((resolve) => {
+    const unsubscribe = onAuthReady((user) => {
+      unsubscribe();
+      resolve(user);
+    });
+  });
 
-  // Fetch documents from the 'list_metadata' collection in Firebase.
-  const snapAllDocs = await getDocs(collection(db, "list_metadata"));
+  if (!currentUser) {
+    console.warn("User not authenticated. Cannot load lists.");
+    return;
+  }
+  const uid = currentUser.uid;
+
+  // 2. Fetch documents from the correct nested subcollection in Firebase.
+  //    Path: 'Users' -> uid -> 'list_metadata'
+  //    This matches the structure: await setDoc(doc(db, "Users", uid, "list_metadata", listName), ...)
+  const listMetadataRef = collection(db, "Users", uid, "list_metadata");
+  const snapAllDocs = await getDocs(listMetadataRef);
 
   // Check if there is a container element to append lists to (in main.html)
   const listsContainer = document.querySelector(".lists-container");

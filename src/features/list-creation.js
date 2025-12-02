@@ -9,6 +9,13 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+import {
+  logoutUser,
+  checkAuthState,
+  addUserSubcollectionDoc,
+  onAuthReady,
+} from "../authentication.js";
+
 import { db } from "../firebaseConfig";
 
 // Step 2: DOM Element Constants
@@ -168,24 +175,33 @@ async function saveAll() {
   }
 
   try {
+    const currentUser = await new Promise((resolve) => {
+      const unsubscribe = onAuthReady((user) => {
+        unsubscribe();
+        resolve(user);
+      });
+    });
+
+    const uid = currentUser.uid;
+
     // Ensure metadata exists for this list (creates collection implicitly)
     // It stores info like creation time.
     // This is so that we can load list names later.
-    await setDoc(doc(db, listName, "metadata"), {
+    await setDoc(doc(db, "Users", uid, "Tasks", "metadata"), {
       createdAt: serverTimestamp(),
       title: listName,
     });
 
     // Register the list name in the central 'list_metadata' collection
     // This allows main.html to fetch and display the link.
-    await setDoc(doc(db, "list_metadata", listName), {
+    await setDoc(doc(db, "Users", uid, "list_metadata", listName), {
       title: listName,
       createdAt: serverTimestamp(),
     });
 
     // For each local task, check Firestore and decide whether to write
     for (const task of localList.tasks) {
-      const taskDocRef = doc(db, listName, task.name);
+      const taskDocRef = doc(db, "Users", uid, listName, task.name);
       const taskSnap = await getDoc(taskDocRef);
 
       if (taskSnap.exists()) {
@@ -222,11 +238,76 @@ async function saveAll() {
     // If there are remote tasks that were removed locally, they will not get delete in Firestore
     // Implement the remove button and codes later
 
+    if (!currentUser) {
+      alert("You must be signed in to save tasks.");
+      return;
+    }
     alert("List saved successfully!");
   } catch (error) {
-    console.error("Error saving list:", error);
-    alert("Failed to save list. Check console for details.");
+    console.error(error);
+    alert("Save failed.");
   }
+
+  // try {
+  //   // Ensure metadata exists for this list (creates collection implicitly)
+  //   // It stores info like creation time.
+  //   // This is so that we can load list names later.
+  //   await setDoc(doc(db, listName, "metadata"), {
+  //     createdAt: serverTimestamp(),
+  //     title: listName,
+  //   });
+
+  //   // Register the list name in the central 'list_metadata' collection
+  //   // This allows main.html to fetch and display the link.
+  //   await setDoc(doc(db, "list_metadata", listName), {
+  //     title: listName,
+  //     createdAt: serverTimestamp(),
+  //   });
+
+  //   // For each local task, check Firestore and decide whether to write
+  //   for (const task of localList.tasks) {
+  //     const taskDocRef = doc(db, listName, task.name);
+  //     const taskSnap = await getDoc(taskDocRef);
+
+  //     if (taskSnap.exists()) {
+  //       const remote = taskSnap.data();
+  //       // Compare description (and date when added later)
+  //       const remoteDesc = remote.description || "";
+  //       const localDesc = task.description || "";
+  //       const remoteDue = remote.dueDate || "";
+  //       const localDue = task.dueDate || "";
+
+  //       // Only overwrite if description changed (or other fields added later on)
+  //       if (remoteDesc !== localDesc) {
+  //         // may want to preserve remote.createdAt in future
+  //         await setDoc(taskDocRef, {
+  //           createdAt: serverTimestamp(),
+  //           name: task.name,
+  //           description: task.description || "",
+  //           dueDate: task.dueDate || null,
+  //         });
+  //       } else {
+  //         // Descriptions match; skip writing to save writes
+  //       }
+  //     } else {
+  //       // New task, create it
+  //       await setDoc(taskDocRef, {
+  //         createdAt: serverTimestamp(),
+  //         name: task.name,
+  //         description: task.description || "",
+  //         dueDate: task.dueDate || null,
+  //       });
+  //     }
+  //   }
+
+  //   // If there are remote tasks that were removed locally, they will not get delete in Firestore
+  //   // Implement the remove button and codes later
+
+  //   alert("List saved successfully!");
+  // } catch (error) {
+  //   console.error("Error saving list:", error);
+  //   alert("Failed to save list. Check console for details.");
+  // }
 }
 
 // --- Event Listeners and Initialization ---
