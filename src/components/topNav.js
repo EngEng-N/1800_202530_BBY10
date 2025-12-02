@@ -12,9 +12,9 @@ export function createTopNav() {
             <span></span>
         </div>
         <ul class="nav-links" id="nav-links">
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Support</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="support.html">Support</a></li>
             <button onclick="logoutUser()" class="logout-btn">
               Logout
             </button>
