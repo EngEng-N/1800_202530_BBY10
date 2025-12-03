@@ -70,6 +70,39 @@ function renderUI() {
     taskName.classList = task.name;
     taskName.innerHTML = task.name;
 
+    const deleteContainer = document.createElement("div");
+    deleteContainer.classList.add("delete-container");
+
+    const deleteTaskBtn = document.createElement("button");
+    deleteTaskBtn.classList.add("delete-task-btn");
+    deleteTaskBtn.textContent = "✕";
+
+    deleteTaskBtn.addEventListener("click", async () => {
+      // Remove task locally
+      localList.tasks = localList.tasks.filter((t) => t.name !== task.name);
+      renderUI();
+
+      // Remove from Firestore ONLY if list was saved
+      if (firebaseActiveListName) {
+        const currentUser = await new Promise((resolve) => {
+          const unsub = onAuthReady((user) => {
+            unsub();
+            resolve(user);
+          });
+        });
+
+        if (currentUser) {
+          await deleteTaskFromFirestore(
+            currentUser.uid,
+            firebaseActiveListName,
+            task.name
+          );
+        }
+      }
+    });
+
+    deleteContainer.appendChild(deleteTaskBtn);
+
     const taskDesc = document.createElement("p");
     taskDesc.innerHTML = `Description:<br>${task.description || ""}`;
 
@@ -101,6 +134,8 @@ function renderUI() {
     if (taskDue) {
       TaskList.append(taskDue);
     }
+
+    TaskList.appendChild(deleteContainer);
   });
 }
 
@@ -152,6 +187,17 @@ async function resetList() {
   firebaseActiveListName = null;
   // Render the blank UI
   renderUI();
+}
+
+async function deleteTaskFromFirestore(uid, listName, taskName) {
+  const taskDocRef = doc(db, "Users", uid, listName, taskName);
+
+  try {
+    await deleteDoc(taskDocRef);
+    console.log(`Deleted task "${taskName}" from Firestore`);
+  } catch (error) {
+    console.error("Error deleting task:", error);
+  }
 }
 
 // Step 8
@@ -243,6 +289,7 @@ async function saveAll() {
       return;
     }
     alert("List saved successfully!");
+    firebaseActiveListName = listName;
   } catch (error) {
     console.error(error);
     alert("Save failed.");

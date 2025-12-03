@@ -25,10 +25,11 @@ body {
 
 #task-list {
   display: grid;
-  grid-template-columns: 1.2fr 0.6fr;
+  grid-template-columns: 1.2fr 0.6fr 0.6fr;
   grid-auto-rows: minmax(6rem, auto);
   background-color: #edeef2;
   gap: 1rem;
+  align-items: center;
 }
 
 .list-section {
@@ -173,7 +174,7 @@ h3 {
   border-radius: 20px;
 
   padding: 0.5rem 1rem;
-  width: 8rem;
+  width: 9rem;
 
   height: auto;
 
@@ -201,6 +202,24 @@ h3 {
   opacity: 0;
   transform: translateY(12px);
   animation: reminderItemIn 0.5s ease-out forwards;
+}
+
+.delete-task-btn {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: none;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-task-btn:hover {
+  background: #c0392b;
 }
 
 @keyframes reminderItemIn {
